@@ -10,13 +10,16 @@ env:
 jobs:
     deploy:
         runs-on: ubuntu-latest
-
+        permissions:
+            contents: read
+            pages: write
+            id-token: write  
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
 
             # Add your deployment steps here
-            - name: Deploy to production
+            - name: Login
               uses: azure/login@v2.1.1
               with:
                 client-id: ${{ secrets.AZURE_CLIENT_ID }}
